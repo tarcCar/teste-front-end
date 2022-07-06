@@ -1,8 +1,8 @@
 import { Logo } from '@/components';
 import React from 'react';
-
+import './home-styles.scss'
 const Home: React.FC = () => {
-  return <div>
+  return <div className='home-container'>
     <Logo />
   </div>;
 }
