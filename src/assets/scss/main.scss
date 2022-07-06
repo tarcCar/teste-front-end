@@ -1,4 +1,10 @@
 // ABSTRACTS
 @import 'abstracts/mixins';
+@import 'abstracts/variables';
 // BASE
 @import 'base/base';
+// COMPONENTS
+@import 'components/buttons';
+@import 'components/logo';
+// PAGES
+@import 'pages/home';

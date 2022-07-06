@@ -1,0 +1,18 @@
+.home {
+  background: rgb(67,234,127);
+  background: linear-gradient(90deg, rgba(67,234,127,1) 0%, rgba(67,234,127,1) 17%, rgba(55,248,212,1) 100%);
+  width: 100wh;
+  height: 100vh;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  place-content: start center;
+  -webkit-box-pack: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

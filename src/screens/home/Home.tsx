@@ -1,9 +1,14 @@
-import { Logo } from '@/components';
+import { Logo, Button } from '@/components';
 import React from 'react';
-import './home-styles.scss'
 const Home: React.FC = () => {
-  return <div className='home-container'>
-    <Logo />
+  const onEnterButtonClickHandler = (): void => {
+    console.log('click');
+  }
+  return <div className='home'>
+    <div className='home-container'>
+      <Logo />
+      <Button text='Entrar' onClick={onEnterButtonClickHandler} />
+    </div>
   </div>;
 }
 
