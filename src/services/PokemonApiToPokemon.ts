@@ -4,7 +4,7 @@ export class PokemonApiToPokemon {
   constructor (private readonly pokemonApi: any) {}
 
   get name (): string {
-    return this.pokemonApi.forms.name;
+    return this.pokemonApi.name;
   }
 
   get abilities (): string[] {
