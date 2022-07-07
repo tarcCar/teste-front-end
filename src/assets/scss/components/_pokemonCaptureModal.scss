@@ -1,0 +1,21 @@
+.modal-capture {
+  background: rgb(67,234,127);
+  background: linear-gradient(90deg, rgba(67,234,127,1) 0%, rgba(67,234,127,1) 17%, rgba(55,248,212,1) 100%);
+  width: 100%;
+  height: 100%;
+  padding-top: 35%;
+
+  .infos-container {
+    height: 100%;
+    border-top-right-radius: 46px;
+    border-top-left-radius: 46px;
+    background-color: $color-neutral;
+  }
+  .avatar-container {
+    position: absolute;
+    top: 5%;
+    transform: translateY(-5%);
+    text-align: center;
+    width: 100%;
+  }
+}

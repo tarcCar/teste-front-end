@@ -7,6 +7,7 @@ type PokemonStats = {
 
 export type Pokemon = {
   name: string
+  icon: string
   hp: number
   weight: number
   height: number

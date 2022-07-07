@@ -57,9 +57,14 @@ export class PokemonApiToPokemon {
     return Number(weight)
   }
 
+  get icon (): string {
+    return this.pokemonApi.sprites.front_default
+  }
+
   get pokemon (): Pokemon {
     return {
       name: this.name,
+      icon: this.icon,
       abilities: this.abilities,
       height: this.height,
       hp: this.hp,
