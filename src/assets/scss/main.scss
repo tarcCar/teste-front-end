@@ -3,12 +3,14 @@
 @import 'abstracts/variables';
 // BASE
 @import 'base/base';
+@import 'base/typography';
 // COMPONENTS
 @import 'components/buttons';
 @import 'components/logo';
 @import 'components/player';
 @import 'components/pokemonCaptureModal';
 @import 'components/avatar';
+@import 'components/section-title';
 // LAYOUT
 @import 'layouts/modal';
 // PAGES

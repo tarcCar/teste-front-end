@@ -1,7 +1,7 @@
 import React from 'react';
 type Props = {
   text?: string
-  icon?: string
+  icon?: React.ReactNode
   onClick: () => void
 }
 const Button: React.FC<Props> = ({ icon, text, onClick }) => {

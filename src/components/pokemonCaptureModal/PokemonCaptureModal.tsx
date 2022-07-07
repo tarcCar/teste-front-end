@@ -2,6 +2,7 @@ import { Pokemon } from '@/types';
 import React from 'react';
 import Avatar from '../avatar/Avatar';
 import Modal from '../modal/Modal';
+import PokemonStats from '../pokemonStats/PokemonStats';
 type Props = {
   onClose: () => void
   pokemonToCapture: Pokemon
@@ -13,7 +14,7 @@ const PokemonCaptureModal: React.FC<Props> = ({ onClose, pokemonToCapture }) => 
               <Avatar src={pokemonToCapture.icon} alt={pokemonToCapture.name} />
           </div>
           <div className='infos-container'>
-             Infos
+             <PokemonStats pokemon={pokemonToCapture} />
           </div>
         </div>
   </Modal>
