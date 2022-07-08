@@ -3,6 +3,7 @@ import React from 'react';
 import pokeball from '@/assets/images/pokeball.png';
 import { Pokemon } from '@/types';
 
+import SectionTitle from './sectionTitle/SectionTitle';
 import StatsItem from './statsItem/StatsItem';
 
 type Props = {
@@ -10,31 +11,14 @@ type Props = {
 };
 const PokemonStats: React.FC<Props> = ({ pokemon }) => {
   return (
-    <div
-      style={{
-        paddingTop: '150px',
-        width: '100%',
-      }}
-    >
-      <p
-        style={{
-          textTransform: 'uppercase',
-          marginBottom: '3rem',
-          fontWeight: 'bold',
-          fontSize: '3rem',
-          lineHeight: 1.6,
-          color: '#2e3a59',
-          textAlign: 'center',
-        }}
-      >
-        {pokemon.name}
-      </p>
+    <div className="stats">
+      <p className="name">{pokemon.name}</p>
       <div className="stats-items-container">
         <StatsItem label="HP" value={`${pokemon.hp}/${pokemon.hp}`} />
         <StatsItem label="Altura" value={`${pokemon.height}`} />
         <StatsItem label="Peso" value={`${pokemon.weight}`} />
       </div>
-      <hr data-content="Tipo" className="hr-text" />
+      <SectionTitle title="tipo" />
       <div
         style={{
           display: 'flex',
@@ -73,7 +57,7 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
           Veneno
         </span>
       </div>
-      <hr data-content="Habilidades" className="hr-text" />
+      <SectionTitle title="Habilidades" />
       <div
         style={{
           display: 'flex',
