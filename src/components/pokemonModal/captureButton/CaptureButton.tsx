@@ -7,11 +7,7 @@ type Props = {
 };
 
 const CaptureButton: React.FC<Props> = ({ onClick }) => {
-  return (
-    <div className="capture-button">
-      <img src={pokeball} alt="capture" onClick={onClick} />
-    </div>
-  );
+  return <img src={pokeball} alt="capture" onClick={onClick} />;
 };
 
 export default CaptureButton;

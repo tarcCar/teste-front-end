@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
-import { capture } from '@/store/slices/PokemonSlice';
+import { capture, free } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { Pokemon, PokemonStatus } from '@/types';
 
@@ -9,6 +9,7 @@ import Avatar from '../avatar/Avatar';
 import Modal from '../modal/Modal';
 import PokemonStats from '../pokemonStats/PokemonStats';
 import CaptureButton from './captureButton/CaptureButton';
+import FreeButton from './freeButton/FreeButton';
 
 type Props = {
   onClose: () => void;
@@ -29,6 +30,15 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
     return onClose();
   };
 
+  const onFreeClickHandler = () => {
+    if (!capturedPokemons.length) {
+      return;
+    }
+
+    dispatch(free(pokemon.id));
+    onClose();
+  };
+
   return (
     <Modal onClose={onClose}>
       <div className="modal-pokemon">
@@ -39,8 +49,10 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
         <div className="infos-container">
           <PokemonStats pokemon={pokemon} />
         </div>
-
-        {pokemon.isWild && <CaptureButton onClick={onCaptureClickHandler} />}
+        <div className="action-button">
+          {pokemon.isWild && <CaptureButton onClick={onCaptureClickHandler} />}
+          {pokemon.isCaptured && <FreeButton onClick={onFreeClickHandler} />}
+        </div>
       </div>
     </Modal>
   );

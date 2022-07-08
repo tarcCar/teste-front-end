@@ -1,9 +1,17 @@
+import { v4 as uuid } from 'uuid';
+
 import { PokemonStatus } from './PokemonStatus';
 
 export class Pokemon {
   private _status: PokemonStatus = PokemonStatus.WILD;
 
+  private _id: string = uuid();
+
   constructor(private readonly pokemonApi: any) {}
+
+  get id(): string {
+    return this._id;
+  }
 
   get name(): string {
     return this.pokemonApi.name;
