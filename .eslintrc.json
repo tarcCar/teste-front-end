@@ -1,40 +1,88 @@
 {
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+  "env": {
+      "browser": true,
+      "es2021": true
   },
   "extends": [
-    "standard-with-typescript",
-    "plugin:react/recommended",
-    "plugin:cypress/recommended"
+      "plugin:react/recommended",
+      "airbnb",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
   ],
-  "env": {
-    "cypress/globals": true
-  },
-  "plugins": ["react", "cypress"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 13,
+      "sourceType": "module"
   },
+  "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint",
+      "prettier"
+  ],
   "rules": {
-    "@typescript-eslint/consistent-type-definitions": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/comma-spacing": "off",
-    "@typescript-eslint/return-await": "off",
-    "@typescript-eslint/no-namespace": "off",
-    "no-redeclare": "off",
-    "import/export": "off",
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error",
-    "@typescript-eslint/camelcase":"off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "semi": "off",
-    "comma-dangle":"off",
-    "react/prop-types": "off",
-    "@typescript-eslint/semi": "off",
-    "@typescript-eslint/method-signature-style": "off",
-    "@typescript-eslint/no-unnecessary-type-assertion": "off"
+    "jsx-a11y/media-has-caption": "off",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/comma-spacing": "off",  
+      "@typescript-eslint/return-await": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "no-redeclare": "off",
+      "no-underscore-dangle": "off",
+      "no-param-reassign": "off",
+      "import/export": "off",
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "@typescript-eslint/camelcase":"off",
+      "react/prop-types": "off",
+      "@typescript-eslint/method-signature-style": "off",
+      "react/jsx-filename-extension": "off",
+      "import/extensions": "off",
+      "import/no-extraneous-dependencies": "off",
+      "max-classes-per-file": "off",
+      "no-useless-constructor": "off",
+      "import/prefer-default-export": "off",
+      "no-shadow": "off",
+      "class-methods-use-this": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/require-default-props": "off",
+      "react/function-component-definition": [
+          2,
+          {
+              "namedComponents": "arrow-function",
+              "unnamedComponents": "arrow-function"
+          }
+        ],
+      "react/jsx-no-constructed-context-values": "off",
+      "jsx-a11y/no-noninteractive-element-interactions": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal"],
+            "pathGroups": [
+              {
+                "pattern": "react",
+                "group": "external",
+                "position": "before"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["react"],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ]
   },
-  "ignorePatterns": ["eslint.json"]
+  "settings": {
+      "import/resolver": {
+        "typescript": {}
+      }
+    }
 }
