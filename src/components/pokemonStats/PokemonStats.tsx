@@ -3,7 +3,6 @@ import React from 'react';
 import { Pokemon } from '@/types';
 
 import Abilities from './abilities/Abilities';
-import CaptureButton from './captureButton/CaptureButton';
 import SectionTitle from './sectionTitle/SectionTitle';
 import StatsItem from './statsItem/StatsItem';
 import TypeChip from './typeChip/TypeChip';
@@ -34,7 +33,6 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
       <SectionTitle title="Habilidades" />
 
       <Abilities abilities={pokemon.abilities} />
-      <CaptureButton />
     </div>
   );
 };

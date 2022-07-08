@@ -18,4 +18,17 @@
     text-align: center;
     width: 100%;
   }
+  .capture-button {
+    position: fixed;
+    bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    img {
+      width: 100%;
+      max-width: 96px;
+      height: auto;
+      cursor: pointer;
+    }
+  }
 }
