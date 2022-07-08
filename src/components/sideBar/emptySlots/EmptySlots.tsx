@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { useAppSelector } from '@/store/storeHooks';
-
-const MAX_CAPTURED_POKEMON_QUANTITY = 6;
 
 const EmptySlots: React.FC = () => {
   const capturedPokemons = useAppSelector((state) => state.pokemon.captured);

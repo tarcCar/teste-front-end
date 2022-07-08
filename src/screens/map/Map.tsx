@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Player, PokemonModal, SideBar } from '@/components';
+import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { PokemonService } from '@/services';
 import { selectPokemon } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
-import { Pokemon } from '@/types';
 
 const Map: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const Map: React.FC = () => {
   );
 
   const onPlayerClickHandler = async (): Promise<void> => {
-    if (capturedPokemons.length >= 6) {
+    if (capturedPokemons.length >= MAX_CAPTURED_POKEMON_QUANTITY) {
       alert('Atingiu o numero maximo de pokemons!');
       return;
     }

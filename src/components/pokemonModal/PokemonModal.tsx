@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { capture } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { Pokemon, PokemonStatus } from '@/types';
@@ -20,7 +21,7 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
   const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
 
   const onCaptureClickHandler = () => {
-    if (capturedPokemons.length >= 6) {
+    if (capturedPokemons.length >= MAX_CAPTURED_POKEMON_QUANTITY) {
       return alert('Atingiu o numero maximo de pokemons!');
     }
     pokemon.capture();
