@@ -1,1 +1,1 @@
-export * from './GetRandomPokemonError'
+export * from './GetRandomPokemonError';

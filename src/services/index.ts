@@ -1,2 +1,2 @@
-export * from './PokemonApiService'
-export * from './PokemonApiToPokemon'
+export * from './PokemonApiService';
+export * from './PokemonApiToPokemon';

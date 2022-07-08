@@ -1,10 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import pokemonSlice from './slices/PokemonSlice'
+import { configureStore } from '@reduxjs/toolkit';
+
+import pokemonSlice from './slices/PokemonSlice';
 
 const store = configureStore({
   reducer: {
-    pokemon: pokemonSlice
+    pokemon: pokemonSlice,
   },
-})
+});
 
-export default store
+export default store;

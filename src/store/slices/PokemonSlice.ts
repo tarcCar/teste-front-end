@@ -1,24 +1,25 @@
-import { Pokemon } from '@/types'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
+
+import { Pokemon } from '@/types';
 
 type State = {
-  captured: Pokemon[]
-}
+  captured: Pokemon[];
+};
 
 const initialState: State = {
-  captured: []
-}
+  captured: [],
+};
 
 export const pokemonSlice = createSlice({
   name: 'pokemon',
   initialState,
   reducers: {
     capture: (state, action) => {
-      state.captured = [...state.captured, action.payload]
+      state.captured = [...state.captured, action.payload];
     },
   },
-})
+});
 
-export const { capture } = pokemonSlice.actions
+export const { capture } = pokemonSlice.actions;
 
-export default pokemonSlice.reducer
+export default pokemonSlice.reducer;
