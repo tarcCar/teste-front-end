@@ -1,0 +1,24 @@
+.stats-items-container {
+  display: flex;
+  width: 100%;
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 1.6;
+  color: $color-neutral-700;
+  text-align: center;
+  justify-content: space-between;
+  padding: 0 8%;
+
+  .stats-item:nth-child(2) {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    width: 33%;
+  }
+  .stats-item-label {
+    font-size: 2rem;
+  }
+
+  .stats-item-value {
+    font-size: 2.5rem;
+  }
+}

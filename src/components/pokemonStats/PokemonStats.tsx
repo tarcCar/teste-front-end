@@ -2,6 +2,7 @@ import { Pokemon } from '@/types';
 import React from 'react';
 import Button from '../button/Button';
 import pokeball from '@/assets/images/pokeball.png'
+import StatsItem from './statsItem/StatsItem';
 type Props = {
   pokemon: Pokemon
 }
@@ -21,7 +22,7 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
     }}>
       {pokemon.name}
     </p>
-    <div style={{
+    <div className='stats-items-container' style={{
       display: 'flex',
       width: '100%',
       fontWeight: 'bold',
@@ -32,50 +33,20 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
       justifyContent: 'space-between',
       padding: '0 8%'
     }}>
-      <div>
-        <p
-        style={{
-          fontSize: '2rem',
-        }}
-        >
-          HP
-        </p>
-        <p
-          style={{
-            fontSize: '2.5rem',
-          }}
-        >45/45</p>
-      </div>
-      <div style={{
-        borderLeft: '1px solid grey',
-        borderRight: '1px solid grey',
-        width: '33%'
-      }}>
-        <p
-        style={{
-          fontSize: '2rem',
-        }}
-        >Altura</p>
-        <p
-         style={{
-           fontSize: '2.5rem',
-         }}
-        >0.7 m</p>
-      </div>
-      <div>
-        <p
-         style={{
-           fontSize: '2rem',
-         }}
-        >
-          Peso
-        </p>
-        <p
-         style={{
-           fontSize: '2.5rem',
-         }}
-        >6.9 kg</p>
-      </div>
+
+      <StatsItem
+        label='HP'
+        value={`${pokemon.hp}/${pokemon.hp}`}
+      />
+      <StatsItem
+        label='Altura'
+        value={`${pokemon.height}`}
+      />
+
+      <StatsItem
+        label='Peso'
+        value={`${pokemon.weight}`}
+      />
     </div>
     <hr data-content="Tipo" className="hr-text" />
     <div style={{
