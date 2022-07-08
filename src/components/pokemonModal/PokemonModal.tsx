@@ -2,7 +2,7 @@ import React from 'react';
 
 import { capture } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
-import { Pokemon } from '@/types';
+import { Pokemon, PokemonStatus } from '@/types';
 
 import Avatar from '../avatar/Avatar';
 import Modal from '../modal/Modal';
@@ -23,6 +23,7 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
     if (capturedPokemons.length >= 6) {
       return alert('Atingiu o numero maximo de pokemons!');
     }
+    pokemon.capture();
     dispatch(capture(pokemon));
     return onClose();
   };
@@ -33,10 +34,14 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
         <div className="avatar-container">
           <Avatar src={pokemon.icon} alt={pokemon.name} />
         </div>
+
         <div className="infos-container">
           <PokemonStats pokemon={pokemon} />
         </div>
-        <CaptureButton onClick={onCaptureClickHandler} />
+
+        {pokemon.status === PokemonStatus.WILD && (
+          <CaptureButton onClick={onCaptureClickHandler} />
+        )}
       </div>
     </Modal>
   );

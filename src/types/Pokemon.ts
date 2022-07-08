@@ -1,4 +1,8 @@
+import { PokemonStatus } from './PokemonStatus';
+
 export class Pokemon {
+  private _status: PokemonStatus = PokemonStatus.WILD;
+
   constructor(private readonly pokemonApi: any) {}
 
   get name(): string {
@@ -67,5 +71,13 @@ export class Pokemon {
 
   get icon(): string {
     return this.pokemonApi.sprites.front_default;
+  }
+
+  get status(): PokemonStatus {
+    return this._status;
+  }
+
+  capture() {
+    this._status = PokemonStatus.CAPTURED;
   }
 }
