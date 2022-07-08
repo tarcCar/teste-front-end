@@ -14,7 +14,7 @@ export class Pokemon {
   }
 
   get heightFormatted(): string {
-    const heightInMeters = this.height / 100;
+    const heightInMeters = this.height / 10;
     return `${heightInMeters.toFixed(2)} m`;
   }
 
