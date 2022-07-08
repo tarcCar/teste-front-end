@@ -3,7 +3,7 @@ import React from 'react';
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { capture, free } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
-import { Pokemon, PokemonStatus } from '@/types';
+import { Pokemon } from '@/types';
 
 import Avatar from '../avatar/Avatar';
 import Modal from '../modal/Modal';

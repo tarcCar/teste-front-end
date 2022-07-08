@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Player, PokemonModal, SideBar } from '@/components';
+import NewPokemonModel from '@/components/newPokemonModel/NewPokemonModal';
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { PokemonService } from '@/services';
 import { selectPokemon } from '@/store/slices/PokemonSlice';
@@ -13,6 +14,9 @@ const Map: React.FC = () => {
   const selectedPokemon = useAppSelector(
     (state) => state.pokemon.selectedPokemon
   );
+
+  const [openNewPokemonModel, setOpenNewPokemonModel] =
+    useState<boolean>(false);
 
   const onPlayerClickHandler = async (): Promise<void> => {
     if (capturedPokemons.length >= MAX_CAPTURED_POKEMON_QUANTITY) {
@@ -29,6 +33,14 @@ const Map: React.FC = () => {
     dispatch(selectPokemon(null));
   };
 
+  const onNewPokemonModalCloseHandler = (): void => {
+    setOpenNewPokemonModel(false);
+  };
+
+  const onNewPokemonModalClickHandler = (): void => {
+    setOpenNewPokemonModel(true);
+  };
+
   return (
     <div className="map">
       <Player onPlayerClick={onPlayerClickHandler} />
@@ -38,7 +50,10 @@ const Map: React.FC = () => {
           pokemon={selectedPokemon}
         />
       )}
-      <SideBar />
+      {openNewPokemonModel && (
+        <NewPokemonModel onClose={onNewPokemonModalCloseHandler} />
+      )}
+      <SideBar onAddNewPokemonClick={onNewPokemonModalClickHandler} />
     </div>
   );
 };

@@ -9,11 +9,15 @@ import Button from '../button/Button';
 import CapturedPokemonSlots from './capturedPokemonSlots/CapturedPokemonSlots';
 import EmptySlots from './emptySlots/EmptySlots';
 
-const Sidebar: React.FC = () => {
+type Props = {
+  onAddNewPokemonClick: () => void;
+};
+
+const Sidebar: React.FC<Props> = ({ onAddNewPokemonClick }) => {
   const dispatch = useAppDispatch();
 
   const onAddCustomPokemonClickHandler = () => {
-    console.log(`add custom`);
+    onAddNewPokemonClick();
   };
 
   const onSelectPokemonHandler = (pokemon: Pokemon) => {

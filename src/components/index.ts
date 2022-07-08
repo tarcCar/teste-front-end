@@ -5,3 +5,4 @@ export { default as Modal } from './modal/Modal';
 export { default as PokemonModal } from './pokemonModal/PokemonModal';
 export { default as PokemonStats } from './pokemonStats/PokemonStats';
 export { default as SideBar } from './sideBar/SideBar';
+export { default as NewPokemonModal } from './newPokemonModel/NewPokemonModal';
