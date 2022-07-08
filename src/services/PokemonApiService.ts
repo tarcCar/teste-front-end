@@ -2,8 +2,6 @@ import { GetRandomPokemonError } from '@/errors';
 import { Pokemon } from '@/types';
 import { getRandomNumber } from '@/utils';
 
-import { PokemonApiToPokemon } from './PokemonApiToPokemon';
-
 // TODO: colocar no arquivos env
 const URL_POKEMON_API = 'https://pokeapi.co/api/v2/pokemon';
 const MIN_POKEMON_ID_TO_CAPTURE = 1;
@@ -20,7 +18,7 @@ export class PokemonService {
       throw new GetRandomPokemonError();
     }
     const responseJson = await response.json();
-    const { pokemon } = new PokemonApiToPokemon(responseJson);
+    const pokemon = new Pokemon(responseJson);
     return pokemon;
   }
 }

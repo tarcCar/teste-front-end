@@ -1,6 +1,5 @@
 import React from 'react';
 
-import pokeball from '@/assets/images/pokeball.png';
 import { Pokemon } from '@/types';
 
 import Abilities from './abilities/Abilities';
@@ -12,6 +11,7 @@ import TypeChip from './typeChip/TypeChip';
 type Props = {
   pokemon: Pokemon;
 };
+
 const PokemonStats: React.FC<Props> = ({ pokemon }) => {
   return (
     <div className="stats">
@@ -19,14 +19,14 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
 
       <div className="stats-items-container">
         <StatsItem label="HP" value={`${pokemon.hp}/${pokemon.hp}`} />
-        <StatsItem label="Altura" value={`${pokemon.height}`} />
-        <StatsItem label="Peso" value={`${pokemon.weight}`} />
+        <StatsItem label="Altura" value={pokemon.heightFormatted} />
+        <StatsItem label="Peso" value={pokemon.weightFormatted} />
       </div>
 
       <SectionTitle title="tipo" />
 
       <div className="types-container">
-        {pokemon.type.map((type) => (
+        {pokemon.types.map((type) => (
           <TypeChip type={type} key={type} />
         ))}
       </div>
