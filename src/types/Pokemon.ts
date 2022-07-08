@@ -80,4 +80,12 @@ export class Pokemon {
   capture() {
     this._status = PokemonStatus.CAPTURED;
   }
+
+  get isWild(): boolean {
+    return this.status === PokemonStatus.WILD;
+  }
+
+  get isCaptured(): boolean {
+    return this.status === PokemonStatus.CAPTURED;
+  }
 }

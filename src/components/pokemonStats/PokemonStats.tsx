@@ -34,7 +34,7 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
       <SectionTitle title="Habilidades" />
 
       <Abilities abilities={pokemon.abilities} />
-      {pokemon.status === PokemonStatus.CAPTURED && (
+      {pokemon.isCaptured && (
         <>
           <SectionTitle title="estatística" />
 

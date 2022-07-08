@@ -40,9 +40,7 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
           <PokemonStats pokemon={pokemon} />
         </div>
 
-        {pokemon.status === PokemonStatus.WILD && (
-          <CaptureButton onClick={onCaptureClickHandler} />
-        )}
+        {pokemon.isWild && <CaptureButton onClick={onCaptureClickHandler} />}
       </div>
     </Modal>
   );
