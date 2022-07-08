@@ -2,35 +2,40 @@ import React, { useState } from 'react';
 
 import { Player, PokemonModal, SideBar } from '@/components';
 import { PokemonService } from '@/services';
-import { useAppSelector } from '@/store/storeHooks';
+import { selectPokemon } from '@/store/slices/PokemonSlice';
+import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { Pokemon } from '@/types';
 
 const Map: React.FC = () => {
-  const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
+  const dispatch = useAppDispatch();
 
-  const [pokemonToCapture, setPokemonToCapture] = useState<Pokemon | null>();
+  const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
+  const selectedPokemon = useAppSelector(
+    (state) => state.pokemon.selectedPokemon
+  );
 
   const onPlayerClickHandler = async (): Promise<void> => {
     if (capturedPokemons.length >= 6) {
-      return alert('Atingiu o numero maximo de pokemons!');
+      alert('Atingiu o numero maximo de pokemons!');
+      return;
     }
 
     const pokemonService = new PokemonService();
     const pokemon = await pokemonService.getRandomPokemon();
-    return setPokemonToCapture(pokemon);
+    dispatch(selectPokemon(pokemon));
   };
 
   const onCaptureModalCloseHandler = (): void => {
-    setPokemonToCapture(null);
+    dispatch(selectPokemon(null));
   };
 
   return (
     <div className="map">
       <Player onPlayerClick={onPlayerClickHandler} />
-      {pokemonToCapture && (
+      {selectedPokemon && (
         <PokemonModal
           onClose={onCaptureModalCloseHandler}
-          pokemon={pokemonToCapture}
+          pokemon={selectedPokemon}
         />
       )}
       <SideBar />
