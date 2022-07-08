@@ -11,13 +11,10 @@ import CaptureButton from './captureButton/CaptureButton';
 
 type Props = {
   onClose: () => void;
-  pokemonToCapture: Pokemon;
+  pokemon: Pokemon;
 };
 
-const PokemonCaptureModal: React.FC<Props> = ({
-  onClose,
-  pokemonToCapture,
-}) => {
+const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
   const dispatch = useAppDispatch();
 
   const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
@@ -26,18 +23,18 @@ const PokemonCaptureModal: React.FC<Props> = ({
     if (capturedPokemons.length >= 6) {
       return alert('Atingiu o numero maximo de pokemons!');
     }
-    dispatch(capture(pokemonToCapture));
+    dispatch(capture(pokemon));
     return onClose();
   };
 
   return (
     <Modal onClose={onClose}>
-      <div className="modal-capture">
+      <div className="modal-pokemon">
         <div className="avatar-container">
-          <Avatar src={pokemonToCapture.icon} alt={pokemonToCapture.name} />
+          <Avatar src={pokemon.icon} alt={pokemon.name} />
         </div>
         <div className="infos-container">
-          <PokemonStats pokemon={pokemonToCapture} />
+          <PokemonStats pokemon={pokemon} />
         </div>
         <CaptureButton onClick={onCaptureClickHandler} />
       </div>
@@ -45,4 +42,4 @@ const PokemonCaptureModal: React.FC<Props> = ({
   );
 };
 
-export default PokemonCaptureModal;
+export default PokemonModal;

@@ -15,11 +15,6 @@ export const pokemonSlice = createSlice({
   initialState,
   reducers: {
     capture: (state, action) => {
-      console.log({
-        state,
-        action,
-      });
-
       state.captured = [...state.captured, action.payload];
     },
   },

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Player, PokemonCaptureModal, SideBar } from '@/components';
+import { Player, PokemonModal, SideBar } from '@/components';
 import { PokemonService } from '@/services';
 import { useAppSelector } from '@/store/storeHooks';
 import { Pokemon } from '@/types';
@@ -28,9 +28,9 @@ const Map: React.FC = () => {
     <div className="map">
       <Player onPlayerClick={onPlayerClickHandler} />
       {pokemonToCapture && (
-        <PokemonCaptureModal
+        <PokemonModal
           onClose={onCaptureModalCloseHandler}
-          pokemonToCapture={pokemonToCapture}
+          pokemon={pokemonToCapture}
         />
       )}
       <SideBar />
