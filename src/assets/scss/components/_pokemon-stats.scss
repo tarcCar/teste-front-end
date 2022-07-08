@@ -97,4 +97,25 @@
     padding: 4rem;
   }
   
+  .attributes-container {
+    .attribute-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      line-height: 1.6;
+      color: $color-neutral-700;
+
+      .attribute-icon {
+        width: 14px;
+        height: 18px;
+      }
+      .attribute-label {
+        width: 100%;
+        text-transform: uppercase;
+        padding-left: 8px;
+      }
+    }
+  }
 }

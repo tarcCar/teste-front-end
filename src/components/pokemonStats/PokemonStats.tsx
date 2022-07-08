@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Pokemon } from '@/types';
+import { Pokemon, PokemonStatus } from '@/types';
 
 import Abilities from './abilities/Abilities';
+import Attributes from './attributes/Attributes';
 import SectionTitle from './sectionTitle/SectionTitle';
 import StatsItem from './statsItem/StatsItem';
 import TypeChip from './typeChip/TypeChip';
@@ -33,6 +34,13 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
       <SectionTitle title="Habilidades" />
 
       <Abilities abilities={pokemon.abilities} />
+      {pokemon.status === PokemonStatus.CAPTURED && (
+        <>
+          <SectionTitle title="estatística" />
+
+          <Attributes pokemon={pokemon} />
+        </>
+      )}
     </div>
   );
 };
