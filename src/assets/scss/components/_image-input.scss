@@ -1,0 +1,14 @@
+.image-input {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: $color-neutral;
+  border: 4px solid $color-primary-default;
+  background-image: url(https://bitbucket.org/fdtedsd/teste-frontend/raw/87356080d92b08c82326dbe550025ec41319ec1c/examples/with-sass/src/assets/images/camera.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  position: relative;
+  margin: 0 auto;
+}
