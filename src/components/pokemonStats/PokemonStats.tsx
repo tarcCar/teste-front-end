@@ -5,6 +5,7 @@ import { Pokemon } from '@/types';
 
 import SectionTitle from './sectionTitle/SectionTitle';
 import StatsItem from './statsItem/StatsItem';
+import TypeChip from './typeChip/TypeChip';
 
 type Props = {
   pokemon: Pokemon;
@@ -19,45 +20,14 @@ const PokemonStats: React.FC<Props> = ({ pokemon }) => {
         <StatsItem label="Peso" value={`${pokemon.weight}`} />
       </div>
       <SectionTitle title="tipo" />
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          fontWeight: 'bold',
-          fontSize: '3rem',
-          lineHeight: 1.6,
-          color: '#2e3a59',
-          textAlign: 'center',
-          justifyContent: 'space-around',
-          padding: '4rem',
-        }}
-      >
-        <span
-          style={{
-            color: 'white',
-            backgroundColor: '#67AF32',
-            padding: '1rem 3rem',
-            borderRadius: '50px',
-            textTransform: 'uppercase',
-            fontSize: '2rem',
-          }}
-        >
-          Planta
-        </span>
-        <span
-          style={{
-            color: 'white',
-            backgroundColor: '#924990',
-            padding: '1rem 3rem',
-            borderRadius: '50px',
-            textTransform: 'uppercase',
-            fontSize: '2rem',
-          }}
-        >
-          Veneno
-        </span>
+      <div className="types-container">
+        {pokemon.type.map((type) => (
+          <TypeChip type={type} key={type} />
+        ))}
       </div>
+
       <SectionTitle title="Habilidades" />
+
       <div
         style={{
           display: 'flex',
