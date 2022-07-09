@@ -1,18 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const ImageInput: React.FC = () => {
+type Props = {
+  onImageSelected?: (imageUrl: string) => void;
+  onChange?: (e: React.ChangeEvent<any>) => void;
+  onBlur?: (e: React.FocusEvent<any, Element>) => void;
+  name: string;
+  error?: any;
+};
+
+const ImageInput: React.FC<Props> = ({
+  name,
+  error,
+  onBlur,
+  onChange,
+  onImageSelected,
+}) => {
   const [newImage, setNewImage] = useState<string>('');
 
   const onImageFileInputChangeHandler = (ev: any) => {
     const file = ev.target.files[0];
     const url = URL.createObjectURL(file);
     setNewImage(url);
+    if (onChange) {
+      onChange(ev);
+    }
   };
+
+  useEffect(() => {
+    if (!onImageSelected) {
+      return;
+    }
+    onImageSelected(newImage);
+  }, [newImage]);
 
   const onSelectNewImageClickHandler = () => {
     const fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
     fileInput.setAttribute('accept', 'image/*');
+    fileInput.setAttribute('name', name);
     fileInput.onchange = onImageFileInputChangeHandler;
     fileInput.click();
   };
@@ -29,11 +54,16 @@ const ImageInput: React.FC = () => {
   }
 
   return (
-    <input
-      className="image-input"
-      type="button"
-      onClick={onSelectNewImageClickHandler}
-    />
+    <>
+      <input
+        className={`image-input ${error ? 'error' : ''}`}
+        name={name}
+        type="button"
+        onBlur={onBlur}
+        onClick={onSelectNewImageClickHandler}
+      />
+      {error && <p className="input-error">{error}</p>}
+    </>
   );
 };
 

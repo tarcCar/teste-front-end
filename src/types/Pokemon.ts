@@ -1,5 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
+import { NewPokemonFormTypeHelper, PokemonApiHelper } from '@/helpers';
+
+import { NewPokemonFormType } from './NewPokemonFormType';
+import { PokemonHelper } from './PokemonHelper';
 import { PokemonStatus } from './PokemonStatus';
 
 export class Pokemon {
@@ -7,78 +11,113 @@ export class Pokemon {
 
   private _id: string = uuid();
 
-  constructor(private readonly pokemonApi: any) {}
+  private _icon!: string;
+
+  private _name!: string;
+
+  private _abilities!: string[];
+
+  private _height!: number;
+
+  private _hp!: number;
+
+  private _weight!: number;
+
+  private _speed!: number;
+
+  private _attack!: number;
+
+  private _defense!: number;
+
+  private _specialDefense!: number;
+
+  private _specialAttack!: number;
+
+  private _types!: string[];
+
+  private setValuesFromHelper(helper: PokemonHelper) {
+    this._icon = helper.icon;
+    this._abilities = helper.abilities;
+    this._attack = helper.attack;
+    this._defense = helper.defense;
+    this._height = helper.height;
+    this._hp = helper.hp;
+    this._name = helper.name;
+    this._specialAttack = helper.specialAttack;
+    this._specialDefense = helper.specialDefense;
+    this._speed = helper.speed;
+    this._types = helper.types;
+    this._weight = helper.weight;
+  }
+
+  setValuesFromPokemonApi(pokemonApi: any) {
+    const pokemonApiHelper = new PokemonApiHelper(pokemonApi);
+    this.setValuesFromHelper(pokemonApiHelper);
+  }
+
+  setValuesFromNewPokemonFormType(newPokemon: NewPokemonFormType) {
+    const newPokemonFormTypeHelper = new NewPokemonFormTypeHelper(newPokemon);
+    this.setValuesFromHelper(newPokemonFormTypeHelper);
+  }
 
   get id(): string {
     return this._id;
   }
 
   get name(): string {
-    return this.pokemonApi.name;
+    return this._name;
   }
 
   get abilities(): string[] {
-    return this.pokemonApi.abilities.map(({ ability }) => ability.name);
+    return this._abilities;
   }
 
   get height(): number {
-    return Number(this.pokemonApi.height);
+    return this._height;
   }
 
   get heightFormatted(): string {
-    const heightInMeters = this.height / 10;
-    return `${heightInMeters.toFixed(2)} m`;
-  }
-
-  get stats(): any[] {
-    return this.pokemonApi.stats;
-  }
-
-  private findStatsByName(statsName: string): any {
-    return this.stats.find(({ stat }) => stat.name === statsName);
+    return `${this.height.toFixed(2)} m`;
   }
 
   get hp(): number {
-    const hpStats = this.findStatsByName('hp');
-    return hpStats ? Number(hpStats.base_stat) : 0;
+    return this._hp;
   }
 
   get attack(): number {
-    const hpStats = this.findStatsByName('attack');
-    return hpStats ? Number(hpStats.base_stat) : 0;
+    return this._attack;
+  }
+
+  get specialAttack(): number {
+    return this._specialAttack;
   }
 
   get defense(): number {
-    const hpStats = this.findStatsByName('defense');
-    return hpStats ? Number(hpStats.base_stat) : 0;
+    return this._defense;
   }
 
   get specialDefense(): number {
-    const hpStats = this.findStatsByName('special-defense');
-    return hpStats ? Number(hpStats.base_stat) : 0;
+    return this._specialDefense;
   }
 
   get speed(): number {
-    const hpStats = this.findStatsByName('speed');
-    return hpStats ? Number(hpStats.base_stat) : 0;
+    return this._speed;
   }
 
   get types(): string[] {
-    return this.pokemonApi.types.map(({ type }) => type.name);
+    return this._types;
   }
 
   get weight(): number {
-    const { weight } = this.pokemonApi;
-    return Number(weight);
+    return this._weight;
   }
 
   get weightFormatted(): string {
-    const weightInKilos = this.weight / 10;
-    return `${weightInKilos.toFixed(2)} kg`;
+    return `${this.weight.toFixed(2)} kg`;
   }
 
   get icon(): string {
-    return this.pokemonApi.sprites.front_default;
+    return this._icon;
   }
 
   get status(): PokemonStatus {

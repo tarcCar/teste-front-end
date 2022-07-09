@@ -9,11 +9,15 @@ type Option = {
 
 type Props = {
   placeholder: string;
+  name?: string;
   options: Option[];
   multiple?: boolean;
   limit?: number;
-  onSelectedOption: (value: any[]) => void;
+  onSelectedOption?: (value: any[]) => void;
   onLimitReach?: () => void;
+  onChange?: (e: React.ChangeEvent<any>) => void;
+  onBlur?: (e: React.FocusEvent<any, Element>) => void;
+  error?: string | boolean;
 };
 
 const Dropdown: React.FC<Props> = ({
@@ -23,9 +27,16 @@ const Dropdown: React.FC<Props> = ({
   onSelectedOption,
   limit,
   onLimitReach,
+  onChange,
+  onBlur,
+  name,
+  error,
 }) => {
   const [values, setValues] = useState<any[]>([]);
   const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (onChange) {
+      onChange(e);
+    }
     e.preventDefault();
     const selected = Array.from(e.target.selectedOptions).map(
       ({ value }) => value
@@ -33,7 +44,9 @@ const Dropdown: React.FC<Props> = ({
 
     if (!limit || selected.length <= limit) {
       setValues(selected);
-      onSelectedOption(selected);
+      if (onSelectedOption) {
+        onSelectedOption(selected);
+      }
       return;
     }
     if (onLimitReach) {
@@ -45,10 +58,13 @@ const Dropdown: React.FC<Props> = ({
     <div className="dropdown__container">
       <img src={chevron} className="dropdown__icon" alt="Chevron" />
       <select
-        className="dropdown"
+        id={name}
+        name={name}
+        className={`dropdown ${error ? 'error' : ''}`}
         onChange={onChangeHandler}
         multiple={multiple}
         value={values}
+        onBlur={onBlur}
       >
         <option className="dropdown__option" selected>
           {placeholder}
@@ -64,6 +80,7 @@ const Dropdown: React.FC<Props> = ({
             </option>
           ))}
       </select>
+      {error && <p className="input-error">{error}</p>}
     </div>
   );
 };

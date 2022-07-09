@@ -20,7 +20,8 @@ export class PokemonApiService {
       throw new GetRandomPokemonError();
     }
     const responseJson = await response.json();
-    const pokemon = new Pokemon(responseJson);
+    const pokemon = new Pokemon();
+    pokemon.setValuesFromPokemonApi(responseJson);
     return pokemon;
   }
 

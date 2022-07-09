@@ -12,6 +12,10 @@
     line-height: 2.4rem;
     color: $color-neutral-500;
 
+    &.error {
+        border: 2px solid $color-error-red;
+    }
+    
     &__container {
         position: relative;
     }

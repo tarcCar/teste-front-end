@@ -11,4 +11,7 @@
   background-size: auto;
   position: relative;
   margin: 0 auto;
+  &.error {
+    border: 4px solid $color-error-red;
+  }
 }

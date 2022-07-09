@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Formik } from 'formik';
+
+import { capture } from '@/store/slices/PokemonSlice';
+import { useAppDispatch } from '@/store/storeHooks';
+import { NewPokemonFormType, Pokemon } from '@/types';
 
 import Button from '../button/Button';
 import ImageInput from '../imageInput/ImageInput';
@@ -15,25 +19,41 @@ type Props = {
 };
 
 const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
-  const addNewPokemonClickHandler = () => {
-    console.log(`new`);
-    onClose();
+  const dispatch = useAppDispatch();
+
+  const formikRef = useRef<any>();
+
+  const [imageUrl, setImageUrl] = useState<string>('');
+
+  const onNewImageHandler = (newImageUrl: string) => {
+    setImageUrl(newImageUrl);
   };
 
-  const onTypesSelectedHandler = (types: string[]) => {
-    console.log(types);
+  useEffect(() => {
+    if (!formikRef.current) {
+      return;
+    }
+
+    const formik = formikRef.current;
+    formik.setFieldValue('icon', imageUrl, true);
+  }, [imageUrl, formikRef]);
+
+  const submitNewPokemonHandler = (values: NewPokemonFormType) => {
+    const pokemon = new Pokemon();
+    pokemon.setValuesFromNewPokemonFormType(values);
+    pokemon.capture();
+    dispatch(capture(pokemon));
+    onClose();
   };
 
   return (
     <Modal onClose={onClose}>
       <div className="modal-pokemon">
-        <div className="avatar-container">
-          <ImageInput />
-        </div>
-
         <div className="infos-container">
           <Formik
+            innerRef={formikRef}
             initialValues={{
+              icon: '',
               name: '',
               hp: '',
               weight: '',
@@ -49,7 +69,7 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
               specialAttack: '',
               speed: '',
             }}
-            validate={(values) => {
+            validate={(values: NewPokemonFormType) => {
               const errors: any = {};
               if (!values.name) {
                 errors.name = 'Nome é obrigatório';
@@ -120,11 +140,9 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
 
               return errors;
             }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={(values: NewPokemonFormType, { setSubmitting }) => {
+              submitNewPokemonHandler(values);
+              setSubmitting(false);
             }}
           >
             {({
@@ -134,10 +152,17 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting,
-              isValid,
             }) => (
               <form onSubmit={handleSubmit} className="pokemon-form">
+                <div className="avatar-container">
+                  <ImageInput
+                    name="icon"
+                    onImageSelected={onNewImageHandler}
+                    onBlur={handleBlur}
+                    error={errors.icon && touched.icon && errors.icon}
+                  />
+                </div>
+
                 <TextInput
                   label="Nome"
                   placeholder="Nome"
@@ -178,7 +203,12 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
                   error={errors.height && touched.height && errors.height}
                 />
                 <SectionTitle title="Tipo" />
-                <TypesSelect onTypesSelected={onTypesSelectedHandler} />
+                <TypesSelect
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  name="types"
+                  error={errors.types && touched.types && errors.types}
+                />
                 <SectionTitle title="Habilidades" />
                 <TextInput
                   label="Habilidade 1"
@@ -279,13 +309,13 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
                   value={values.speed}
                   error={errors.speed && touched.speed && errors.speed}
                 />
+
+                <div className="action-button">
+                  <Button text="Criar Pokemon" type="submit" />
+                </div>
               </form>
             )}
           </Formik>
-        </div>
-
-        <div className="action-button">
-          <Button onClick={addNewPokemonClickHandler} text="Criar Pokemon" />
         </div>
       </div>
     </Modal>

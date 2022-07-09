@@ -8,10 +8,20 @@ import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import Dropdown from '../dropdown/Dropdown';
 
 type Props = {
-  onTypesSelected: (types: string[]) => void;
+  onTypesSelected?: (types: string[]) => void;
+  onChange?: (e: React.ChangeEvent<any>) => void;
+  onBlur?: (e: React.FocusEvent<any, Element>) => void;
+  name: string;
+  error?: any;
 };
 
-const TypesSelect: React.FC<Props> = ({ onTypesSelected }) => {
+const TypesSelect: React.FC<Props> = ({
+  onTypesSelected,
+  onChange,
+  onBlur,
+  name,
+  error,
+}) => {
   const dispatch = useAppDispatch();
   const types = useAppSelector((state) => state.types.types);
   const [typesOptions, setTypesOptions] = useState<any>([]);
@@ -52,8 +62,12 @@ const TypesSelect: React.FC<Props> = ({ onTypesSelected }) => {
       options={typesOptions}
       multiple
       onSelectedOption={onTypesSelected}
+      onChange={onChange}
+      onBlur={onBlur}
       limit={MAX_TYPES_PER_POKEMON}
       onLimitReach={onLimitReachHandler}
+      name={name}
+      error={error}
     />
   );
 };
