@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Player, PokemonModal, SideBar } from '@/components';
 import NewPokemonModel from '@/components/newPokemonModel/NewPokemonModal';
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
-import { PokemonService } from '@/services';
+import { PokemonApiService } from '@/services';
 import { selectPokemon } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 
@@ -24,7 +24,7 @@ const Map: React.FC = () => {
       return;
     }
 
-    const pokemonService = new PokemonService();
+    const pokemonService = new PokemonApiService();
     const pokemon = await pokemonService.getRandomPokemon();
     dispatch(selectPokemon(pokemon));
   };

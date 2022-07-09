@@ -25,11 +25,19 @@
         height: auto;
         pointer-events: none;
     }
-
+    option:checked {
+        color: $color-black;
+        background: $color-neutral-500;
+    }
     &__option {
         font-weight: 600;
         font-size: 1.5rem;
         line-height: 2.4rem;
-        color: $color-neutral-500;
+        text-transform: capitalize;
+        
+        &__selected {
+            color: $color-black;
+            background: $color-neutral-500;
+        }
     }
 }

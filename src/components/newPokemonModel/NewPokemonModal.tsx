@@ -1,15 +1,12 @@
 import React from 'react';
 
-import addPhoto from '@/assets/images/camera.png';
-
-import Avatar from '../avatar/Avatar';
 import Button from '../button/Button';
-import Dropdown from '../dropdown/Dropdown';
 import ImageInput from '../imageInput/ImageInput';
 import Modal from '../modal/Modal';
 import NumberInput from '../numberInput/NumberInput';
 import SectionTitle from '../pokemonStats/sectionTitle/SectionTitle';
 import TextInput from '../textInput/TextInput';
+import TypesSelect from '../typesSelect/TypesSelect';
 
 type Props = {
   onClose: () => void;
@@ -20,6 +17,11 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
     console.log(`new`);
     onClose();
   };
+
+  const onTypesSelectedHandler = (types: string[]) => {
+    console.log(types);
+  };
+
   return (
     <Modal onClose={onClose}>
       <div className="modal-pokemon">
@@ -44,15 +46,7 @@ const NewPokemonModel: React.FC<Props> = ({ onClose }) => {
               suffix="Cm"
             />
             <SectionTitle title="Tipo" />
-            <Dropdown
-              placeholder="Selecione o(s) tipo(s)"
-              options={[
-                {
-                  text: 'teste',
-                  value: 'teste',
-                },
-              ]}
-            />
+            <TypesSelect onTypesSelected={onTypesSelectedHandler} />
             <SectionTitle title="Habilidades" />
             <TextInput
               label="Habilidade 1"
