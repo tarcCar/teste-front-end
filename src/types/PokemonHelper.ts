@@ -11,4 +11,5 @@ export interface PokemonHelper {
   specialDefense: number;
   specialAttack: number;
   types: string[];
+  isCustom: boolean;
 }

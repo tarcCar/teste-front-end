@@ -4,7 +4,7 @@ export type NewPokemonFormType = {
   hp: string;
   weight: string;
   height: string;
-  types: never[];
+  types: string[];
   abilities1: string;
   abilities2: string;
   abilities3: string;

@@ -10,6 +10,8 @@ type Props = {
 
 const CapturedPokemonSlots: React.FC<Props> = ({ onSelect }) => {
   const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
+  console.log(capturedPokemons);
+
   const onCapturedPokemonClick = (pokemon: Pokemon) => {
     onSelect(pokemon);
   };

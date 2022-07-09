@@ -35,6 +35,8 @@ export class Pokemon {
 
   private _types!: string[];
 
+  private _isCustom = false;
+
   private setValuesFromHelper(helper: PokemonHelper) {
     this._icon = helper.icon;
     this._abilities = helper.abilities;
@@ -48,6 +50,7 @@ export class Pokemon {
     this._speed = helper.speed;
     this._types = helper.types;
     this._weight = helper.weight;
+    this._isCustom = helper.isCustom;
   }
 
   setValuesFromPokemonApi(pokemonApi: any) {
@@ -134,5 +137,9 @@ export class Pokemon {
 
   get isCaptured(): boolean {
     return this.status === PokemonStatus.CAPTURED;
+  }
+
+  get isCustom(): boolean {
+    return this._isCustom;
   }
 }

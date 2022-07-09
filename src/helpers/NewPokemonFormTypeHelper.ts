@@ -68,4 +68,8 @@ export class NewPokemonFormTypeHelper implements PokemonHelper {
   get icon(): string {
     return this.newPokemon.icon;
   }
+
+  get isCustom(): boolean {
+    return true;
+  }
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
-import { capture, free } from '@/store/slices/PokemonSlice';
+import { capture, free, setPokemonToEdit } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { Pokemon } from '@/types';
 
@@ -13,11 +13,14 @@ import FreeButton from './freeButton/FreeButton';
 
 type Props = {
   onClose: () => void;
+  onEditPokemon: () => void;
   pokemon: Pokemon;
 };
 
-const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
+const PokemonModal: React.FC<Props> = ({ onClose, pokemon, onEditPokemon }) => {
   const dispatch = useAppDispatch();
+
+  const [edit, setEdit] = useState(false);
 
   const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
 
@@ -39,6 +42,19 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
     onClose();
   };
 
+  const onEditPokemonClickHandler = () => {
+    if (!capturedPokemons.length) {
+      return;
+    }
+
+    if (pokemon.isCustom) {
+      dispatch(setPokemonToEdit(pokemon));
+      onEditPokemon();
+    } else {
+      setEdit(true);
+    }
+  };
+
   return (
     <Modal onClose={onClose}>
       <div className="modal-pokemon">
@@ -47,7 +63,11 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon }) => {
         </div>
 
         <div className="infos-container">
-          <PokemonStats pokemon={pokemon} />
+          <PokemonStats
+            pokemon={pokemon}
+            onEditPokemon={onEditPokemonClickHandler}
+            edit={edit}
+          />
         </div>
         <div className="action-button">
           {pokemon.isWild && <CaptureButton onClick={onCaptureClickHandler} />}

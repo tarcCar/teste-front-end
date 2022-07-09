@@ -75,4 +75,8 @@ export class PokemonApiHelper implements PokemonHelper {
   get icon(): string {
     return this.pokemonApi.sprites.front_default;
   }
+
+  get isCustom(): boolean {
+    return false;
+  }
 }
