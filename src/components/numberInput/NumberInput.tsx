@@ -8,13 +8,19 @@ type Props = {
   placeholder: string;
   name: string;
   suffix?: string;
-};
+  error?: string | boolean;
+} & React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>;
 const NumberInput: React.FC<Props> = ({
   label,
   name,
   placeholder,
   className,
   suffix,
+  error,
+  ...props
 }) => {
   return (
     <div className={`${className} input__container`}>
@@ -26,10 +32,11 @@ const NumberInput: React.FC<Props> = ({
       <div className="input__number">
         <input
           id={name}
-          className="input"
+          className={`input ${error ? 'error' : ''}`}
           type="number"
           placeholder={placeholder}
           name={name}
+          {...props}
         />
         {suffix && <p className="input__suffix">{suffix}</p>}
         <div className="input__btns">
@@ -37,6 +44,7 @@ const NumberInput: React.FC<Props> = ({
           <img src={chevron} className="input__decrease" alt="Menos" />
         </div>
       </div>
+      {error && <p className="input-error">{error}</p>}
     </div>
   );
 };

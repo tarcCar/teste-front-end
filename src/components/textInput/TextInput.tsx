@@ -5,13 +5,19 @@ type Props = {
   label: string;
   placeholder: string;
   name: string;
-};
+  error?: string | boolean;
+} & React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>;
 
 const TextInput: React.FC<Props> = ({
-  className,
+  className = '',
   label,
   name,
   placeholder,
+  error,
+  ...props
 }) => {
   return (
     <div className={`${className} input__container`}>
@@ -22,11 +28,13 @@ const TextInput: React.FC<Props> = ({
       )}
       <input
         id={name}
-        className="input"
+        className={`input ${error ? 'error' : ''}`}
         type="text"
         placeholder={placeholder}
         name={name}
+        {...props}
       />
+      {error && <p className="input-error">{error}</p>}
     </div>
   );
 };
