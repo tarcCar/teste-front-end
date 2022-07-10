@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
 type Props = {
-  onImageSelected?: (imageUrl: string) => void;
+  onImageSelected?: (imageUrl: string | undefined) => void;
   onChange?: (e: React.ChangeEvent<any>) => void;
   onBlur?: (e: React.FocusEvent<any, Element>) => void;
   name: string;
+  value?: string;
   error?: any;
 };
 
 const ImageInput: React.FC<Props> = ({
   name,
+  value,
   error,
   onBlur,
   onChange,
   onImageSelected,
 }) => {
-  const [newImage, setNewImage] = useState<string>('');
+  const [newImage, setNewImage] = useState<string | undefined>('');
 
   const onImageFileInputChangeHandler = (ev: any) => {
     const file = ev.target.files[0];
@@ -25,6 +27,13 @@ const ImageInput: React.FC<Props> = ({
       onChange(ev);
     }
   };
+
+  useEffect(() => {
+    if (newImage) {
+      return;
+    }
+    setNewImage(value);
+  }, [value, newImage]);
 
   useEffect(() => {
     if (!onImageSelected) {

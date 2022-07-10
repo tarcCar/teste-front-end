@@ -42,10 +42,10 @@ const NewPokemonModel: React.FC<Props> = ({ onClose, pokemonToUpdate }) => {
 
   const formikRef = useRef<any>();
 
-  const [imageUrl, setImageUrl] = useState<string>('');
+  const [imageUrl, setImageUrl] = useState<string | undefined>('');
   const [initValues, setInitValue] = useState<NewPokemonFormType>();
 
-  const onNewImageHandler = (newImageUrl: string) => {
+  const onNewImageHandler = (newImageUrl: string | undefined) => {
     setImageUrl(newImageUrl);
   };
 
@@ -208,6 +208,7 @@ const NewPokemonModel: React.FC<Props> = ({ onClose, pokemonToUpdate }) => {
                     name="icon"
                     onImageSelected={onNewImageHandler}
                     onBlur={handleBlur}
+                    value={values.icon}
                     error={errors.icon && touched.icon && errors.icon}
                   />
                 </div>
