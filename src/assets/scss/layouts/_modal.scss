@@ -9,6 +9,13 @@
     justify-content: center;
     z-index: 10;
     background-color: rgba($color-black, 0.5);
+    width: 100vw;
+    max-width: 360px;
+
+    margin: 0 auto;
+    min-height: calc(100vh - 64px);
+    top: 50%;
+    transform: translateY(-50%);
 
     @include respond(phone) {
         width: 100vw;
