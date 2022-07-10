@@ -40,6 +40,7 @@ ul::before,
 }
 
 html {
+    font-family: 'Open Sans', sans-serif;
     @include respond(big-desk) {
         // 1440px < width
         font-size: 75%; // 1rem = 12px
@@ -64,4 +65,5 @@ html {
         // width > 575.98px
         font-size: 50%; // 1rem = 8px
     }
+    
 }
