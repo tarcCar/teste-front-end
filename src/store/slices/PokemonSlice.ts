@@ -35,8 +35,12 @@ export const pokemonSlice = createSlice({
       if (pokemonToRemoveIndex < 0) {
         return;
       }
-
+      const pokemonToRemote = newCaptured[pokemonToRemoveIndex];
+      if (pokemonToRemote.isCustom) {
+        URL.revokeObjectURL(pokemonToRemote.icon);
+      }
       newCaptured.splice(pokemonToRemoveIndex, 1);
+
       state.captured = newCaptured;
     },
     updatePokemon: (state, action) => {
