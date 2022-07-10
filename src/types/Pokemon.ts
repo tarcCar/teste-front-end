@@ -71,6 +71,10 @@ export class Pokemon {
     return this._name;
   }
 
+  set name(name: string) {
+    this._name = name;
+  }
+
   get abilities(): string[] {
     return this._abilities;
   }

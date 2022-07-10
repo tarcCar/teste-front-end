@@ -11,6 +11,16 @@
     display: flex;
     justify-content: center;
     align-items: baseline;
+    .field-name-container {
+      display: flex;
+      align-items: center;
+      input {
+        margin-bottom: 16px;
+      }
+      img {
+        cursor: pointer;
+      }
+    }
   }
   .name {
     text-transform: uppercase;

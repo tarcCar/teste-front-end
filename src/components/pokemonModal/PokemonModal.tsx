@@ -55,6 +55,16 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon, onEditPokemon }) => {
     }
   };
 
+  const onUpdateNameHandler = (name: string) => {
+    setEdit(false);
+    pokemon.name = name;
+    dispatch(setPokemonToEdit(pokemon));
+  };
+
+  const onCancelUpdateNameHandler = () => {
+    setEdit(false);
+  };
+
   return (
     <Modal onClose={onClose}>
       <div className="modal-pokemon">
@@ -67,6 +77,8 @@ const PokemonModal: React.FC<Props> = ({ onClose, pokemon, onEditPokemon }) => {
             pokemon={pokemon}
             onEditPokemon={onEditPokemonClickHandler}
             edit={edit}
+            onUpdateName={onUpdateNameHandler}
+            onCancelUpdateName={onCancelUpdateNameHandler}
           />
         </div>
         <div className="action-button">

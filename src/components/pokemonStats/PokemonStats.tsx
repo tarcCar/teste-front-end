@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import checkIcon from '@/assets/images/checkIcon.png';
+import closeIcon from '@/assets/images/close.png';
 import editIcon from '@/assets/images/editIcon.png';
 import { Pokemon } from '@/types';
 
@@ -14,26 +16,47 @@ type Props = {
   pokemon: Pokemon;
   onEditPokemon: () => void;
   edit?: boolean;
+  onUpdateName: (name: string) => void;
+  onCancelUpdateName: () => void;
 };
 
-const PokemonStats: React.FC<Props> = ({ pokemon, onEditPokemon, edit }) => {
+const PokemonStats: React.FC<Props> = ({
+  pokemon,
+  onEditPokemon,
+  edit,
+  onUpdateName,
+  onCancelUpdateName,
+}) => {
+  const [name, setName] = useState<string>('');
+
+  const onChangeNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const onUpdateNameHandler = () => {
+    onUpdateName(name);
+  };
+
+  useEffect(() => {
+    if (!pokemon) {
+      return;
+    }
+    setName(pokemon.name);
+  }, [pokemon]);
+
   return (
     <div className="stats">
       <div className="field-container">
         {edit ? (
-          <div
-            style={{
-              display: 'flex',
-            }}
-          >
+          <div className="field-name-container">
             <TextInput
-              style={{
-                marginBottom: '16px',
-              }}
-              label=""
+              value={name}
               name="name"
               placeholder="digite o nome"
+              onChange={onChangeNameHandler}
             />
+            <img src={checkIcon} alt="Salvar" onClick={onUpdateNameHandler} />
+            <img src={closeIcon} alt="cancelar" onClick={onCancelUpdateName} />
           </div>
         ) : (
           <>

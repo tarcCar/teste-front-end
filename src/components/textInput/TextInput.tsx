@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
   className?: string;
-  label: string;
+  label?: string;
   placeholder: string;
   name: string;
   error?: string | boolean;
