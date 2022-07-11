@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import plusIcon from '@/assets/images/plus.png';
+import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { selectPokemon } from '@/store/slices/PokemonSlice';
-import { useAppDispatch } from '@/store/storeHooks';
+import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 import { Pokemon } from '@/types';
 
 import Button from '../button/Button';
@@ -15,6 +16,7 @@ type Props = {
 
 const Sidebar: React.FC<Props> = ({ onAddNewPokemonClick }) => {
   const dispatch = useAppDispatch();
+  const capturedPokemons = useAppSelector((state) => state.pokemon.captured);
 
   const onAddCustomPokemonClickHandler = () => {
     onAddNewPokemonClick();
@@ -23,17 +25,26 @@ const Sidebar: React.FC<Props> = ({ onAddNewPokemonClick }) => {
   const onSelectPokemonHandler = (pokemon: Pokemon) => {
     dispatch(selectPokemon(pokemon));
   };
+  const [emptySlots, setEmptySlots] = useState<any[]>([]);
+
+  useEffect(() => {
+    const emptyQuantity =
+      MAX_CAPTURED_POKEMON_QUANTITY - capturedPokemons.length;
+
+    setEmptySlots(Array.from(Array(emptyQuantity)));
+  }, [capturedPokemons]);
 
   return (
     <div className="sidebar">
       <CapturedPokemonSlots onSelect={onSelectPokemonHandler} />
 
-      <EmptySlots />
-
-      <Button
-        icon={<img src={plusIcon} alt="+" />}
-        onClick={onAddCustomPokemonClickHandler}
-      />
+      <EmptySlots emptySlots={emptySlots} />
+      {emptySlots.length > 0 && (
+        <Button
+          icon={<img src={plusIcon} alt="+" />}
+          onClick={onAddCustomPokemonClickHandler}
+        />
+      )}
     </div>
   );
 };
