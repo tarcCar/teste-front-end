@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 type Props = {
   emptySlots: any[];
 };
 const EmptySlots: React.FC<Props> = ({ emptySlots }) => {
-  useEffect(() => {
-    console.log(emptySlots);
-  }, [emptySlots]);
   return (
     <>
       {emptySlots.map((emptySlot) => (

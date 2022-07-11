@@ -18,13 +18,19 @@
     position: absolute;
     bottom: 100%;
     left:0;
+
     &.visible {
       visibility: visible;
+      animation-name: slideup;
+      animation-duration: 1s;
     }
   }
 
 }
-
+@keyframes slideup {
+  from   {  bottom:20%; opacity: 0;}
+  to {  bottom:100%; opacity: 1;}
+}
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
