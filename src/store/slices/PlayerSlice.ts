@@ -21,7 +21,6 @@ export const playerSlice = createSlice({
     setStatus: (state, action) => {
       const status = action.payload;
       state.status = action.payload;
-      console.log({ status });
 
       if (status === 'wait') {
         state.isOnError = false;

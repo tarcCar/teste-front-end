@@ -30,6 +30,8 @@ export class PokemonApiService {
     const responseJson = await response.json();
     const pokemon = new Pokemon();
     pokemon.setValuesFromPokemonApi(responseJson);
+    // Só coloquei para fins de ver o efeito do personagem andando
+    await this.sleep(2000);
     return pokemon;
   }
 
