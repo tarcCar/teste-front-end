@@ -31,7 +31,7 @@ const Sidebar: React.FC<Props> = ({ onAddNewPokemonClick }) => {
     const emptyQuantity =
       MAX_CAPTURED_POKEMON_QUANTITY - capturedPokemons.length;
 
-    setEmptySlots(Array.from(Array(emptyQuantity)));
+    setEmptySlots([...new Array(emptyQuantity)].map((_, index) => index));
   }, [capturedPokemons]);
 
   return (
@@ -49,4 +49,4 @@ const Sidebar: React.FC<Props> = ({ onAddNewPokemonClick }) => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);
