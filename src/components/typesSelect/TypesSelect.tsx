@@ -13,6 +13,7 @@ type Props = {
   onBlur?: (e: React.FocusEvent<any, Element>) => void;
   name: string;
   error?: any;
+  values: string[];
 };
 
 const TypesSelect: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const TypesSelect: React.FC<Props> = ({
   onBlur,
   name,
   error,
+  values,
 }) => {
   const dispatch = useAppDispatch();
   const types = useAppSelector((state) => state.types.types);
@@ -68,6 +70,7 @@ const TypesSelect: React.FC<Props> = ({
       onLimitReach={onLimitReachHandler}
       name={name}
       error={error}
+      selectedValues={values}
     />
   );
 };

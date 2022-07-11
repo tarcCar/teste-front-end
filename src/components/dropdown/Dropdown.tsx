@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import chevron from '@/assets/images/chevronDownBlack.png';
 
@@ -18,6 +18,7 @@ type Props = {
   onChange?: (e: React.ChangeEvent<any>) => void;
   onBlur?: (e: React.FocusEvent<any, Element>) => void;
   error?: string | boolean;
+  selectedValues: any[];
 };
 
 const Dropdown: React.FC<Props> = ({
@@ -31,8 +32,12 @@ const Dropdown: React.FC<Props> = ({
   onBlur,
   name,
   error,
+  selectedValues,
 }) => {
   const [values, setValues] = useState<any[]>([]);
+  useEffect(() => {
+    setValues(selectedValues);
+  }, [selectedValues]);
   const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (onChange) {
       onChange(e);

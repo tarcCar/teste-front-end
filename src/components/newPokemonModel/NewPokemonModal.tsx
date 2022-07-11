@@ -258,6 +258,7 @@ const NewPokemonModel: React.FC<Props> = ({ onClose, pokemonToUpdate }) => {
                   onBlur={handleBlur}
                   name="types"
                   error={errors.types && touched.types && errors.types}
+                  values={values.types}
                 />
                 <SectionTitle title="Habilidades" />
                 <TextInput
