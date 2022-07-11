@@ -4,6 +4,7 @@ import { Player, PokemonModal, SideBar } from '@/components';
 import NewPokemonModel from '@/components/newPokemonModel/NewPokemonModal';
 import { MAX_CAPTURED_POKEMON_QUANTITY } from '@/constants';
 import { PokemonApiService } from '@/services';
+import { setStatus } from '@/store/slices/PlayerSlice';
 import { selectPokemon, setPokemonToEdit } from '@/store/slices/PokemonSlice';
 import { useAppDispatch, useAppSelector } from '@/store/storeHooks';
 
@@ -24,10 +25,11 @@ const Map: React.FC = () => {
       alert('Atingiu o numero maximo de pokemons!');
       return;
     }
-
+    dispatch(setStatus('search'));
     const pokemonService = new PokemonApiService();
     const pokemon = await pokemonService.getRandomPokemon();
     dispatch(selectPokemon(pokemon));
+    dispatch(setStatus('wait'));
   };
 
   const onCaptureModalCloseHandler = (): void => {

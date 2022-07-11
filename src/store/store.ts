@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import playerSlice from './slices/PlayerSlice';
 import pokemonSlice from './slices/PokemonSlice';
 import typesSlice from './slices/TypeSlice';
 
@@ -7,6 +8,7 @@ const store = configureStore({
   reducer: {
     pokemon: pokemonSlice,
     types: typesSlice,
+    player: playerSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

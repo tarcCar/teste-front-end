@@ -8,6 +8,14 @@ import { Pokemon } from '@/types';
 import { getRandomNumber } from '@/utils';
 
 export class PokemonApiService {
+  private sleep(timeout: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, timeout);
+    });
+  }
+
   async getRandomPokemon(): Promise<Pokemon> {
     const randomPokemonId = getRandomNumber(
       MIN_POKEMON_ID_TO_CAPTURE,
