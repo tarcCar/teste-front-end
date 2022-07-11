@@ -23,7 +23,7 @@ const CapturedPokemonSlots: React.FC<Props> = ({ onSelect }) => {
           title={capturedPokemon.name}
           onClick={() => onCapturedPokemonClick(capturedPokemon)}
         >
-          <Avatar src={capturedPokemon.icon} alt={capturedPokemon.name} small />
+          <img src={capturedPokemon.icon} alt={capturedPokemon.name} />
         </div>
       ))}
     </>
