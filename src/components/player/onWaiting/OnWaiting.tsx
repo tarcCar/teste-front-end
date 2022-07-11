@@ -3,30 +3,22 @@ import React, { useEffect, useState } from 'react';
 import playerImage from '@/assets/images/ashFront.png';
 import searchTooltip from '@/assets/images/searchTooltip.png';
 
-const OnWaiting: React.FC = () => {
-  const [image, setImage] = useState<string>();
+import Tooltip from '../tooltip/Tooltip';
 
-  const playerShowTooltip = () => {
-    const interval = setInterval(() => {
-      setImage((currentImage) => {
-        return !currentImage ? searchTooltip : undefined;
-      });
-    }, 2000);
-    return interval;
-  };
+type Props = {
+  onClick: () => void;
+};
 
-  useEffect(() => {
-    const interval = playerShowTooltip();
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
+const OnWaiting: React.FC<Props> = ({ onClick }) => {
   return (
-    <>
-      {image && <img src={searchTooltip} className="tooltip" alt="esperando" />}
-      <img src={playerImage} className="player-image" alt="player" />;
-    </>
+    <Tooltip toolTipContent={<img src={searchTooltip} alt="procurando" />}>
+      <img
+        src={playerImage}
+        className="player-image"
+        alt="player"
+        onClick={onClick}
+      />
+    </Tooltip>
   );
 };
 

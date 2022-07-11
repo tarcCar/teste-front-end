@@ -14,7 +14,7 @@ const Player: React.FC<Props> = ({ onPlayerClick }) => {
   if (isSearching) {
     return <OnSearching />;
   }
-  return <OnWaiting />;
+  return <OnWaiting onClick={onPlayerClick} />;
 };
 
 export default Player;

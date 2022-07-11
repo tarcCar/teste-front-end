@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import leftLeg from '@/assets/images/ashLeftLeg.png';
 import rightLeg from '@/assets/images/ashRightLeg.png';
 import stop from '@/assets/images/ashStop.png';
+import searchingTooltip from '@/assets/images/searchingTooltip.png';
+
+import Tooltip from '../tooltip/Tooltip';
 
 const OnSearching: React.FC = () => {
   const [image, setImage] = useState(stop);
@@ -42,7 +45,11 @@ const OnSearching: React.FC = () => {
     };
   }, []);
 
-  return <img src={image} className="player-image" alt="player" />;
+  return (
+    <Tooltip toolTipContent={<img src={searchingTooltip} alt="procurando" />}>
+      <img src={image} className="player-image" alt="player" />;
+    </Tooltip>
+  );
 };
 
 export default OnSearching;
