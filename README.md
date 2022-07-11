@@ -2,87 +2,60 @@
 
 # **Teste Front-End ReactJS**
 
-## ðŸ’» **O desafio**
+Escolhi o projeto com sass para realizar os testes  
 
-Desenvolver uma aplicaÃ§Ã£o web com o objetivo de avaliarmos o seu domÃ­nio em front-end, ou seja, sua organizaÃ§Ã£o, estilo e boas prÃ¡ticas com o cÃ³digo, conhecimento dos frameworks e tecnologias utilizadas.
+## **Fluxo de trabalho**
+Fui criando branches conforme as issuies porem algumas issuies já foram feitas dentro de outras.  
+Utilizei o [convensional commits](https://www.conventionalcommits.org/en/v1.0.0/) para garantir uma formatação das mensagens dos commits.  
+E com o Husky e lint-staged eu conseguia garantir a cadas commit que o lint estava correto antes de fazer o commit.  
 
-#
-## ðŸ”— **Links**
-#### **Segue links uteis para resoluÃ§Ã£o do desafio:**
-- [PokÃ©Api](https://pokeapi.co/)
-- [Layout Desktop](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=13%3A13571&scaling=min-zoom)
-- [Layout Mobile](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=41%3A18782&scaling=min-zoom)
-- [Style Guide](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=36%3A2135&scaling=min-zoom)
-- [Componentes](https://www.figma.com/proto/l92meWj5EzwY3q8XZro1i0/Teste-Front?node-id=27%3A18584&scaling=min-zoom)
-- [Issues](https://bitbucket.org/fdtedsd/teste-frontend/issues)
+## **Como foi feito o desenvolvimento**
 
-#
-## ðŸ“ **Fluxo e Funcionalidades da aplicaÃ§Ã£o**
-- [ ] Landing page com um botÃ£o para iniciar a aplicaÃ§Ã£o (qualquer url inexistente deve redirecionar o usuÃ¡rio para essa landing page).
-- [ ] Personagem no centro da pÃ¡gina.
-- [ ] Barra na esquerda indicando quantos PokÃ©mons ele jÃ¡ capturou (limite de 6) + botÃ£o de criaÃ§Ã£o.
-- [ ] Ao passar o mouse no personagem Ã© exibido o tooltip correspondente.
-- [ ] Ao clicar no personagem Ã© feita uma busca por um PokÃ©mon aleatÃ³rio (id de 1 a 807).
-- [ ] Com o resultado da busca Ã© aberto um modal mostrando os detalhes do PokÃ©mon.
-- [ ] UsuÃ¡rio tem a opÃ§Ã£o de capturÃ¡-lo, clicando na pokÃ©bola, ou fechar o modal.
-- [ ] Se ele capturar o PokÃ©mon, esse PokÃ©mon Ã© exibido na SideBar e o modal de captura desaparece.
-- [ ] UsuÃ¡rio pode capturar atÃ© 6 PokÃ©mons.
-- [ ] Selecionando qualquer PokÃ©mon na SideBar o usuÃ¡rio pode ver os detalhes do PokÃ©mon.
-- [ ] O(s) tipo(s) do PokÃ©mon deve ser traduzido (ex: water => Ãgua).
-- [ ] UsuÃ¡rio pode editar SOMENTE o nome de um PokÃ©mon que foi capturado.
-- [ ] Na SideBar o usuÃ¡rio tem a possibilidade de criar um PokÃ©mon (um PokÃ©mon pode ter no mÃ¡ximo 2 "tipos").
-- [ ] O formulÃ¡rio de criaÃ§Ã£o de PokÃ©mon deve conter validaÃ§Ãµes em todos os campos.
-- [ ] Caso algum campo nÃ£o esteja preenchido, o botÃ£o de criaÃ§Ã£o deve ficar bloqueado.
-- [ ] Para um PokÃ©mon criado o usuÃ¡rio pode editar qualquer informaÃ§Ã£o ou liberÃ¡-lo.
-- [ ] Sempre que liberar um PokÃ©mon Ã© possÃ­vel capturar outro atravÃ©s da busca ou criar um customizado.
-- [ ] Caso as 6 posiÃ§Ãµes estejam ocupadas o usuÃ¡rio nÃ£o pode mais buscar nem criar novos PokÃ©mons.
-- [ ] Responsividade para resoluÃ§Ãµes desktop e mobile. (Ex: 1280 x 720, 360 x 740)
-#
+Utilizei o vite para criar o projeto por acreditar que e muito mais rápido para subir o projeto, pois ele faz algumas otimizações nas importações dos arquivos.  
+Depois eu fui criando os aquivos configurações dos pacotes de configurações, lint para aí sim, começar a criar a aplicação em si.  
+Como já dito eu utilizei o projeto de sass como exemplo, mas não copei tudo logo de cara eu fui copiando os arquivos de exemplos assim que foram necessários.
+Tentei deixar mais componetizado possível, porem algumas partes podiam ficar melhor componetizados como, por exemplo a validação do form de novo pokemon customizável.  
+O redux também poderia ter sido feito de melhor forma principalmente a parte de update de pokemon.  
+Algumas coisas em css eu tive que cópia e adaptar para usar no projeto como, por exemplo, o css do Componente SectionTitle que nada mais e que um hr com texto no meio, mas não consegui fazer sozinho por isso eu copiei e adaptei.  
 
-## ðŸ“– **Regras**
-- Todo o seu cÃ³digo deve ser disponibilizado em um repositÃ³rio pÃºblico ou privado em seu Github ou Bitbucket pessoal;
-- Envie o link para [FDTE RH](mailto:vanessa.bruno@fdte.io?subject=Teste_Front-End_ReactJS);
-- Escolha uma das duas versÃµes abaixo para realizar o teste:
-  * VersÃ£o [com sass](https://bitbucket.org/fdtedsd/teste-frontend/src/master/examples/with-sass/); 
-  * VersÃ£o [com styled-components](https://bitbucket.org/fdtedsd/teste-frontend/src/master/examples/with-styled-components/);
-- Utilizar a [PokÃ©Api](https://pokeapi.co/) para interagir com a aplicaÃ§Ã£o;
-- Usar componentes funcionais e hooks;
-- NÃ£o usar componentes de Class;
-#
-## ðŸš€ **Tecnologias** 
-#### **Para a resoluÃ§Ã£o do desafio, fique a vontade para utilizar as tecnologias citadas abaixo:** 
+## **Obervações**
+
+No arquivo PokemonApiService onde fica os métodos que busca os pokemon aleatórios eu coloquei um sleep de 4 segundos somente para fins de visualizar a animação do personagem enquanto ele ta procurando o pokemon, tive que fazer, pois, a api e muito rapida ia acabar nem visualizando essa animação.  
+
+##  **Itens feitos**
+- [x] Landing page com um botão para iniciar a aplicação (qualquer url inexistente deve redirecionar o usuário para essa landing page).
+- [x] Personagem no centro da página.
+- [x] Barra na esquerda indicando quantos Pokemons ele já capturou (limite de 6) + botão de criação.
+- [x] Ao passar o mouse no personagem e exibido o tooltip correspondente.
+- [x] Ao clicar no personagem e feita uma busca por um Pokemon aleatório (id de 1 a 807).
+- [x] Com o resultado da busca e aberto um modal mostrando os detalhes do Pokemon.
+- [x] Usuário tem a opção de capturá-lo, clicando na pokebola, ou fechar o modal.
+- [x] Se ele capturar o Pokemon, esse Pokemon e exibido na SideBar e o modal de captura desaparece.
+- [x] Usurário pode capturar até 6 Pokemons.
+- [x] Selecionando qualquer Pokemon na SideBar o usuário pode ver os detalhes do Pokemon.
+- [ ] O(s) tipo(s) do Pokemon deve ser traduzido (ex: water => Ãgua).
+- [x] Usuário pode editar SOMENTE o nome de um Pokemon que foi capturado.
+- [x] Na SideBar o usuário tem a possibilidade de criar um Pokemon (um Pokemon pode ter no máximo 2 "tipos").
+- [x] O formulário de criação de Pokemon deve conter validações em todos os campos.
+- [x] Caso algum campo não esteja preenchido, o botão de criação deve ficar bloqueado.
+- [x] Para um Pokemon criado o usuário pode editar qualquer informação ou libera-lo.
+- [x] Sempre que liberar um Pokemon e possível capturar outro através da busca ou criar um customizado.
+- [x] Caso as 6 posições estejam ocupadas o usuário não pode mais buscar nem criar novos Pokemons.
+- [x] Responsividade para resoluções desktop e mobile. (Ex: 1280 x 720, 360 x 740)
+- [ ] Testes
+
+## **Tecnologias Usadas**
 
 - react-redux
 - redux
-- redux-thunk
-- redux-sagas
-- axios
-- storybook
+- fetch
 - eslint
 - node-sass
-- styled-components
 - prettier
-- prop-types
 - typescript
-- react-hook-form
 - formik
-- yup
+- uuid
+- vite
+- husky
+- lint-staged
 
-#
-## âš ï¸ **ObservaÃ§Ãµes**
-- Fique a vontade para mudar a estrutura de como estÃ£o os exemplos;
-- Muita atenÃ§Ã£o ao link das issues por que lÃ¡ estÃ£o descritas as tarefas para serem executadas.
-- VocÃª pode implementar a aplicaÃ§Ã£o usando typescript, assim como o uso de PropTypes.
-- Mesmo a aplicaÃ§Ã£o sendo pequena, o uso do redux estÃ¡ liberado.
-- Os componentes devem ser responsivos.
-
-#
-## âž• **Opcional**
-#### **Esperamos que vocÃª tenha curiosidade em criar testes para aplicaÃ§Ã£o, mas nÃ£o se preocupe, isso Ã© opcional** 
- - Teste unitÃ¡rio
- - Teste de integraÃ§Ã£o
- - Teste de interface
-
-#
-## ðŸ“ **License**
-**FDTE Copyright Â© 2020**
