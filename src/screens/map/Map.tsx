@@ -21,15 +21,20 @@ const Map: React.FC = () => {
     useState<boolean>(false);
 
   const onPlayerClickHandler = async (): Promise<void> => {
-    if (capturedPokemons.length >= MAX_CAPTURED_POKEMON_QUANTITY) {
-      alert('Atingiu o numero maximo de pokemons!');
-      return;
+    try {
+      if (capturedPokemons.length >= MAX_CAPTURED_POKEMON_QUANTITY) {
+        dispatch(setStatus('error'));
+        return;
+      }
+      dispatch(setStatus('search'));
+      const pokemonService = new PokemonApiService();
+      const pokemon = await pokemonService.getRandomPokemon();
+      dispatch(selectPokemon(pokemon));
+      dispatch(setStatus('wait'));
+    } catch (error) {
+      dispatch(setStatus('error'));
+      alert('Erro ao buscar o pokemon, por favor tente novamente');
     }
-    dispatch(setStatus('search'));
-    const pokemonService = new PokemonApiService();
-    const pokemon = await pokemonService.getRandomPokemon();
-    dispatch(selectPokemon(pokemon));
-    dispatch(setStatus('wait'));
   };
 
   const onCaptureModalCloseHandler = (): void => {
